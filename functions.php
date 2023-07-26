@@ -137,17 +137,21 @@ add_action( 'widgets_init', 'breakerbreaker_widgets_init' );
 /**
  * Enqueue scripts and styles.
  */
-function breakerbreaker_scripts() {
-	wp_enqueue_style( 'breakerbreaker-style', get_stylesheet_uri(), array(), _S_VERSION );
-	wp_style_add_data( 'breakerbreaker-style', 'rtl', 'replace' );
+// function breakerbreaker_scripts() {
+// 	wp_enqueue_style( 'breakerbreaker-styles', get_stylesheet_uri(), array(), _S_VERSION );
+// 	wp_style_add_data( 'breakerbreaker-styles', 'rtl', 'replace' );
 
-	wp_enqueue_script( 'breakerbreaker-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
+// 	wp_enqueue_script( 'breakerbreaker-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
+// 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+// 		wp_enqueue_script( 'comment-reply' );
+// 	}
+// }
+function enqueue_styles() {
+    wp_enqueue_style('breakerbreaker-styles', get_stylesheet_directory_uri() . '/styles.css');
 }
-add_action( 'wp_enqueue_scripts', 'breakerbreaker_scripts' );
+add_action('wp_enqueue_scripts', 'enqueue_styles');
+// add_action( 'wp_enqueue_scripts', 'breakerbreaker_scripts' );
 
 /**
  * Implement the Custom Header feature.

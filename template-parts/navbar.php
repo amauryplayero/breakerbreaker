@@ -8,20 +8,24 @@
  */
 
 ?>
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo-container">
+                <img src="https://i.imgur.com/ARuJjX4.jpg">
+            </div>
 
-<?php if ( has_nav_menu( 'primary' ) ) : ?>
-	<nav id="site-navigation" class="primary-navigation" aria-label="<?php esc_attr_e( 'Primary menu', 'twentytwentyone' ); ?>">
-		<div class="menu-button-container">
-           TYESTING NAV BART
-			
-    <?php 	
-    wp_nav_menu( 
-        array(
-        'theme_location' => 'primary',
-        'menu_class'     => 'primary-menu-HAIII',
-         ) );
+            <div class="nav-copy-container">
+                <p>haiiii this is all copy lorem ipsum yea yea</p>
+            </div>
+            
+            <ul class="nav-options-container">
+                <li class="nav-item"><a>home</a></li>
+                <li class="nav-item"><a>programs</a></li>
+                <li class="nav-item"><a>events</a></li>
+                <li class="nav-item"><a>about</a></li>
+            </ul>
+        </div>
+    </nav>
 
-		?>
-	</nav><!-- #site-navigation -->
-	<?php
-endif;
+
+

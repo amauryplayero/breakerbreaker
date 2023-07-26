@@ -1,0 +1,47 @@
+@import 'breakpoints';
+body{
+    margin: 0 0 0 0;
+    font-family: "Space Grotesk";
+}
+.nav-container{
+    // border: red solid;
+    top:0;
+    margin: 0 0 0 0;
+    position: fixed;
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    .nav-logo-container{
+        // border: purple solid;
+    }
+    .nav-copy-container{
+        display: flex;
+        align-items: center;
+        width: 100%;
+        border-top:black solid;
+        border-bottom: black solid;
+        p{
+            margin: 0 0 0 0;
+        }
+    }
+    .nav-options-container{
+        display: none;
+        @include mobile-up{
+            display: flex;
+            width: fit-content;
+            padding: 0 0 0 0;
+            margin: 0 0 0 0;
+        }
+        .nav-item{
+            display: flex;
+            align-items: center;
+            border: black solid;
+            width: 120px;
+            text-decoration: none;
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+        }
+    }
+}
