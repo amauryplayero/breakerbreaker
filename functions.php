@@ -147,11 +147,53 @@ add_action( 'widgets_init', 'breakerbreaker_widgets_init' );
 // 		wp_enqueue_script( 'comment-reply' );
 // 	}
 // }
+function enqueue_custom_script() {
+    // Replace 'your-theme' with the name of your theme's directory.
+    $theme_directory = get_stylesheet_directory_uri();
+    
+    // Enqueue the custom JS file.
+    wp_enqueue_script('slider', $theme_directory . '/js/slider.js', array('jquery'), '1.0', true);
+    wp_localize_script( 'slider', 'my_ajax_object',
+            array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
+}
+add_action('wp_enqueue_scripts', 'enqueue_custom_script');
+
 function enqueue_styles() {
     wp_enqueue_style('breakerbreaker-styles', get_stylesheet_directory_uri() . '/styles.css');
 }
 add_action('wp_enqueue_scripts', 'enqueue_styles');
 // add_action( 'wp_enqueue_scripts', 'breakerbreaker_scripts' );
+
+
+
+// functions.php or custom PHP file
+function get_image_url_by_id($image_id) {
+    // Your code here to retrieve the image URL based on the provided image ID.
+    // For this example, we'll assume you have a custom function called 'get_image_url_by_id'.
+    // Replace this with your actual code that fetches the image URL.
+    // $image_url = get_image_url_by_id($image_id);
+	if ($image_id== "2"){
+		$image_url = "https://i.imgur.com/JPUkJMu.jpg";
+		return $image_url;
+	} else {
+		$image_url = "https://i.imgur.com/f7SqptB.jpeg";
+		return $image_url;
+	}
+}
+add_action('wp_ajax_get_image_url', 'ajax_get_image_url');
+add_action('wp_ajax_nopriv_get_image_url', 'ajax_get_image_url');
+
+function ajax_get_image_url() {
+    // Check for the passed image ID parameter in the AJAX request.
+    $image_id = isset($_POST['image_id']) ? $_POST['image_id'] : 0;
+
+    // Call the PHP function to get the image URL based on the provided image ID.
+    $image_url = get_image_url_by_id($image_id);
+
+    // Return the image URL as the AJAX response.
+    echo json_encode(array('image_url' => $image_url));
+    wp_die(); // Always include this line to terminate the AJAX call properly.
+}
 
 /**
  * Implement the Custom Header feature.
