@@ -5,7 +5,7 @@ body {
 
 .nav-container {
 	background-color: white;
-	top: 0;
+	border: blue solid;
 	margin: 0 0 0 0;
 	position: fixed;
 	width: 100%;

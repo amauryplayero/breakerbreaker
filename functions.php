@@ -147,12 +147,27 @@ add_action( 'widgets_init', 'breakerbreaker_widgets_init' );
 // 		wp_enqueue_script( 'comment-reply' );
 // 	}
 // }
+
+function get_slider_image_urls() {
+    // Your code here to fetch image URLs from your data source.
+    // Replace this with your actual code to retrieve the image URLs.
+	$url = home_url();
+    $image_urls = array(
+       "$url/wp-content/uploads/2023/07/patti.jpg",
+        "$url/wp-content/uploads/2023/07/AB.jpeg",
+        // Add more image URLs as needed.
+    );
+    return $image_urls;
+}
+
 function enqueue_custom_script() {
     // Replace 'your-theme' with the name of your theme's directory.
     $theme_directory = get_stylesheet_directory_uri();
     
     // Enqueue the custom JS file.
     wp_enqueue_script('slider', $theme_directory . '/js/slider.js', array('jquery'), '1.0', true);
+	$image_urls = get_slider_image_urls();
+    wp_localize_script('slider', 'slider_images', $image_urls);
     wp_localize_script( 'slider', 'my_ajax_object',
             array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
 }

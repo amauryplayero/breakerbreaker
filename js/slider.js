@@ -1,35 +1,32 @@
-document.addEventListener('DOMContentLoaded', () => {  
-    const leftBtn = document.getElementById("left-button")
-    const rightBtn = document.getElementById("right-button")
-    const aSpotImage = document.getElementById("image")
-    
-    
-    function getImageViaAjax(imageId) {
-        jQuery.ajax({
-            type: 'POST',
-            url: my_ajax_object.ajax_url, // This variable is automatically defined by WordPress and points to the AJAX endpoint.
-            data: {
-                action: 'get_image_url',
-                image_id: imageId,
-            },
-            success: function(response) {
-                // Parse the JSON response to get the image URL.
-                var imageUrl = JSON.parse(response).image_url;
-                console.log('firing')
-                aSpotImage.src=imageUrl
-                // Now you have the image URL, you can update the slider with the new image.
-                // Add your slider update logic here.
-            },
-            error: function(xhr, status, error) {
-                // Handle any error that may occur during the AJAX call.
-                console.error(error);
-            }
-        });
-    }
-    
+/* eslint-disable */ 
+document.addEventListener( 'DOMContentLoaded', () => {
 
-    leftBtn.addEventListener("click", ()=>getImageViaAjax("1"))
-    rightBtn.addEventListener("click", ()=>getImageViaAjax("2"))
-    
-    
-  });
+
+	const leftBtn = document.getElementById( 'left-button' );
+	const rightBtn = document.getElementById( 'right-button' );
+	const aSpotImage = document.getElementById( 'image' );
+	const imgTitle = document.getElementById( 'img-title' );
+	console.log( 'firing' );
+	console.log( slider_images );
+
+	// get all the links at first so that I can just change them
+
+	let slide = 0;
+	aSpotImage.src = slider_images[ slide ];
+	function switchSlide( direction ) {
+		if ( direction === 'right' ) {
+			if ( slide < slider_images.length - 1 ) {
+				slide++;
+			} else {
+				slide = 0;
+			}
+		} else if ( slide !== 0 ) {
+			slide--;
+		}
+		aSpotImage.src = slider_images[ slide ];
+		console.log( aSpotImage.src );
+	}
+
+	leftBtn.addEventListener( 'click', () => switchSlide( 'left' ) );
+	rightBtn.addEventListener( 'click', () => switchSlide( 'right' ) );
+} );

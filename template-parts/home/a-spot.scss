@@ -14,10 +14,39 @@
         }
         .a-spot-slider-container{
             border: red solid;
+            width: 120px;
             min-width: 120px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            padding: 30px 0 30px 0;
+            .title-container{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100%;
+                #img-title{
+                    margin: 0 0 0 0;
+                    writing-mode: vertical-rl;
+                    transform: rotate(180deg);
+                }
+            
+            }
+            .up-arrow-container{
+                display: flex;
+                justify-content: center;
+                #right-button{
+                    transform: rotate(-90deg);
+                }
+                
+            }
+            .down-arrow-container{
+                display: flex;
+                justify-content: center;
+                #left-button{
+                    transform: rotate(90deg);
+                }
+            }
         }
     }
 }
