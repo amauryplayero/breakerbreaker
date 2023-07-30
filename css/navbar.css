@@ -5,7 +5,6 @@ body {
 
 .nav-container {
 	background-color: white;
-	border: blue solid;
 	margin: 0 0 0 0;
 	position: fixed;
 	width: 100%;
@@ -31,6 +30,7 @@ body {
 }
 
 @media (min-width: 480px) {
+
 	.nav-container .nav-options-container {
 		display: flex;
 		width: fit-content;
@@ -50,4 +50,9 @@ body {
 	justify-content: center;
 }
 
-/*# sourceMappingURL=navbar.css.map */
+.nav-container .nav-options-container .nav-item a {
+	text-decoration: none;
+	width: 100%;
+	text-align: center;
+	color: black;
+}

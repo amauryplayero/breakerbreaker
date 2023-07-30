@@ -10,9 +10,12 @@
 ?>
 <div class="a-spot-container">
     <div class="a-spot-img-and-slider-container">
-        <img id="image" src="">
+        <div class="a-spot-image-container">
+            <img id="image" src="">
+        </div>
+
         <div class="a-spot-slider-container">
-            
+
             <div class="up-arrow-container">
                 <button id="right-button">></button>
             </div>
@@ -27,7 +30,4 @@
             
         </div>
     </div>
-
-    haii!!! this is a big ol picture 
-
 </div>

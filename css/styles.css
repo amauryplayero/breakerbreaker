@@ -56,6 +56,18 @@ body {
 	color: black;
 }
 
+.footer-container {
+	height: 30vh;
+	background-color: black;
+	color: white;
+}
+
+.about-container {
+	height: 500px;
+	border: red solid;
+	padding-top: 30px;
+}
+
 .a-spot-container {
 	height: 75vh;
 	width: 100%;

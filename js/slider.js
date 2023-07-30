@@ -2,31 +2,37 @@
 document.addEventListener( 'DOMContentLoaded', () => {
 
 
-	const leftBtn = document.getElementById( 'left-button' );
-	const rightBtn = document.getElementById( 'right-button' );
+	const downBtn = document.getElementById( 'left-button' );
+	const upBtn = document.getElementById( 'right-button' );
 	const aSpotImage = document.getElementById( 'image' );
-	const imgTitle = document.getElementById( 'img-title' );
-	console.log( 'firing' );
-	console.log( slider_images );
+	const aSpotImageTitle = document.getElementById( 'img-title' );
+	console.log( 'ai' );
+
 
 	// get all the links at first so that I can just change them
 
 	let slide = 0;
-	aSpotImage.src = slider_images[ slide ];
+	aSpotImage.src = slider_data[ slide ].url;
+	aSpotImageTitle.textContent = slider_data[ slide ].title
 	function switchSlide( direction ) {
-		if ( direction === 'right' ) {
-			if ( slide < slider_images.length - 1 ) {
+		if ( direction === 'up' ) {
+			if ( slide < slider_data.length - 1 ) {
 				slide++;
 			} else {
 				slide = 0;
 			}
-		} else if ( slide !== 0 ) {
-			slide--;
-		}
-		aSpotImage.src = slider_images[ slide ];
-		console.log( aSpotImage.src );
+		} else {
+			if( slide !== 0 ){
+				slide--;
+			} else {
+				slide = slider_data.length-1
+			}
+		} 
+		aSpotImage.src = slider_data[ slide ].url;
+		aSpotImageTitle.textContent = slider_data[ slide ].title
+
 	}
 
-	leftBtn.addEventListener( 'click', () => switchSlide( 'left' ) );
-	rightBtn.addEventListener( 'click', () => switchSlide( 'right' ) );
+	upBtn.addEventListener( 'click', () => switchSlide( 'up' ) );
+	downBtn.addEventListener( 'click', () => switchSlide( 'down' ) );
 } );

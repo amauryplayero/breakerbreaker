@@ -1,16 +1,21 @@
 .a-spot-container{
     // border: red solid;
-    height: 500px; //temporary height 
+    height: 75vh; //temporary height 
     width: 100%;
     padding-top: 30px;
     .a-spot-img-and-slider-container{
-        border: blue solid;
+        // border: blue solid;
         height: 100%;
         display: flex;
-        img{
-            object-fit: cover;
+        .a-spot-image-container{
             width: 100%;
-            height: 100%;
+
+            img{
+               width: 100%;
+               height: 100%;
+               object-fit: cover;
+              
+            }
         }
         .a-spot-slider-container{
             border: red solid;

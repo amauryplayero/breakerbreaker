@@ -148,17 +148,97 @@ add_action( 'widgets_init', 'breakerbreaker_widgets_init' );
 // 	}
 // }
 
-function get_slider_image_urls() {
-    // Your code here to fetch image URLs from your data source.
-    // Replace this with your actual code to retrieve the image URLs.
-	$url = home_url();
-    $image_urls = array(
-       "$url/wp-content/uploads/2023/07/patti.jpg",
-        "$url/wp-content/uploads/2023/07/AB.jpeg",
-        // Add more image URLs as needed.
+add_action('init', 'create_gallery_post_type');
+
+function create_gallery_post_type() {
+    $labels = array(
+        'name'               => 'Slider Assets',
+        'singular_name'      => 'Gallery Item',
+        'menu_name'          => 'Slider Assets',
+        'name_admin_bar'     => 'Gallery Item',
+        'add_new'            => 'Add New',
+        'add_new_item'       => 'Add New Gallery Item',
+        'new_item'           => 'New Gallery Item',
+        'edit_item'          => 'Edit Gallery Item',
+        'view_item'          => 'View Gallery Item',
+        'all_items'          => 'All Gallery Items',
+        'search_items'       => 'Search Gallery Items',
+        'parent_item_colon'  => 'Parent Gallery Items:',
+        'not_found'          => 'No gallery items found.',
+        'not_found_in_trash' => 'No gallery items found in Trash.',
     );
-    return $image_urls;
+
+    $args = array(
+        'labels'             => $labels,
+		// 'taxonomies' 		 => array('category'),
+        'public'             => true,
+        'publicly_queryable' => true,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'query_var'          => true,
+        'rewrite'            => array('slug' => 'gallery-item'), // Customize the slug as needed
+        'capability_type'    => 'post',
+        'has_archive'        => true,
+        'hierarchical'       => false,
+        'menu_position'      => null,
+        'supports'           => array('title', 'editor', 'thumbnail', 'cat'), // Customize supports as needed
+    );
+
+    // Register the custom post type
+    register_post_type('gallery', $args);
+
+	$taxonomy_args = array(
+        'hierarchical' => true,
+        'labels' => array(
+            'name' => 'Gallery Categories',
+            'singular_name' => 'Gallery Category',
+            'search_items' => 'Search Gallery Categories',
+            'all_items' => 'All Gallery Categories',
+            'parent_item' => 'Parent Gallery Category',
+            'parent_item_colon' => 'Parent Gallery Category:',
+            'edit_item' => 'Edit Gallery Category',
+            'update_item' => 'Update Gallery Category',
+            'add_new_item' => 'Add New Gallery Category',
+            'new_item_name' => 'New Gallery Category Name',
+            'menu_name' => 'Gallery Categories',
+        ),
+        'show_ui' => true,
+        'query_var' => true,
+        'rewrite' => array('slug' => 'gallery-category'), // Customize the slug as needed
+    );
+
+    register_taxonomy('gallery_category', 'gallery', $taxonomy_args);
 }
+
+function get_gallery_items() {
+
+	$args = array(
+		'post_type' => 'gallery',
+		'posts_per_page' => -1,
+	);
+
+	$gallery_query = new WP_Query($args);
+	$gallery_items = array();
+	
+	if($gallery_query->have_posts()) {
+		while ($gallery_query->have_posts()){
+			$gallery_query->the_post();
+			$featured_image_id = get_post_thumbnail_id();
+			$featured_image_url = $featured_image_id ? wp_get_attachment_url($featured_image_id) : '';
+
+			$item = array(
+				'url' => $featured_image_url,
+				'title' => get_the_title(),
+				'category'=> get_the_terms(get_the_ID(), 'category'),
+ 			);
+
+			 $gallery_items[] = $item;
+		}
+		wp_reset_postdata();
+	}
+	return $gallery_items;
+}
+
 
 function enqueue_custom_script() {
     // Replace 'your-theme' with the name of your theme's directory.
@@ -166,15 +246,16 @@ function enqueue_custom_script() {
     
     // Enqueue the custom JS file.
     wp_enqueue_script('slider', $theme_directory . '/js/slider.js', array('jquery'), '1.0', true);
-	$image_urls = get_slider_image_urls();
-    wp_localize_script('slider', 'slider_images', $image_urls);
-    wp_localize_script( 'slider', 'my_ajax_object',
+	$gallery_items = get_gallery_items();
+
+	wp_localize_script('slider', 'slider_data', $gallery_items);
+    wp_localize_script('slider', 'my_ajax_object',
             array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
 }
 add_action('wp_enqueue_scripts', 'enqueue_custom_script');
 
 function enqueue_styles() {
-    wp_enqueue_style('breakerbreaker-styles', get_stylesheet_directory_uri() . '/styles.css');
+    wp_enqueue_style('breakerbreaker-styles', get_stylesheet_directory_uri() . '/css/styles.css');
 }
 add_action('wp_enqueue_scripts', 'enqueue_styles');
 // add_action( 'wp_enqueue_scripts', 'breakerbreaker_scripts' );

@@ -19,10 +19,10 @@
             </div>
             
             <ul class="nav-options-container">
-                <li class="nav-item"><a>home</a></li>
-                <li class="nav-item"><a>programs</a></li>
-                <li class="nav-item"><a>events</a></li>
-                <li class="nav-item"><a>about</a></li>
+                <li class="nav-item"><a href="/">home</a></li>
+                <li class="nav-item"><a href="/programs">programs</a></li>
+                <li class="nav-item"><a href="/events">events</a></li>
+                <li class="nav-item"><a href="/about">about</a></li>
             </ul>
         </div>
     </nav>

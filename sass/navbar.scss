@@ -6,8 +6,7 @@ body{
 .nav-container{
     // border: red solid;
     background-color: white;
-    // top:0;
-    border: blue solid;
+    // border: blue solid;
     margin: 0 0 0 0;
     position: fixed;
     width: 100%;
@@ -44,6 +43,12 @@ body{
             list-style-type: none;
             display: flex;
             justify-content: center;
+            a{
+                text-decoration: none;
+                width: 100%;
+                text-align: center;
+                color: black;
+            }
         }
     }
 }

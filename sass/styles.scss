@@ -1,4 +1,6 @@
 @import 'navbar';
+@import '../template-parts/footer/footer.scss';
+@import '../template-parts/about/about.scss';
 @import '../template-parts/home/a-spot';
 .nav-menu-container{
     border: blue solid;
