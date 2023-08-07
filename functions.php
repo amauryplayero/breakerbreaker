@@ -147,11 +147,212 @@ add_action( 'widgets_init', 'breakerbreaker_widgets_init' );
 // 		wp_enqueue_script( 'comment-reply' );
 // 	}
 // }
+
+add_action('init', 'create_gallery_post_type');
+
+function create_gallery_post_type() {
+    $labels = array(
+        'name'               => 'Slider Assets',
+        'singular_name'      => 'Gallery Item',
+        'menu_name'          => 'Slider Assets',
+        'name_admin_bar'     => 'Gallery Item',
+        'add_new'            => 'Add New',
+        'add_new_item'       => 'Add New Gallery Item',
+        'new_item'           => 'New Gallery Item',
+        'edit_item'          => 'Edit Gallery Item',
+        'view_item'          => 'View Gallery Item',
+        'all_items'          => 'All Gallery Items',
+        'search_items'       => 'Search Gallery Items',
+        'parent_item_colon'  => 'Parent Gallery Items:',
+        'not_found'          => 'No gallery items found.',
+        'not_found_in_trash' => 'No gallery items found in Trash.',
+    );
+
+    $args = array(
+        'labels'             => $labels,
+		// 'taxonomies' 		 => array('category'),
+        'public'             => true,
+        'publicly_queryable' => true,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'query_var'          => true,
+        'rewrite'            => array('slug' => 'gallery-item'), // Customize the slug as needed
+        'capability_type'    => 'post',
+        'has_archive'        => true,
+        'hierarchical'       => false,
+        'menu_position'      => null,
+        'supports'           => array('title', 'editor', 'thumbnail', 'cat'), // Customize supports as needed
+    );
+
+    // Register the custom post type
+    register_post_type('gallery', $args);
+
+	$taxonomy_args = array(
+        'hierarchical' => true,
+        'labels' => array(
+            'name' => 'Gallery Categories',
+            'singular_name' => 'Gallery Category',
+            'search_items' => 'Search Gallery Categories',
+            'all_items' => 'All Gallery Categories',
+            'parent_item' => 'Parent Gallery Category',
+            'parent_item_colon' => 'Parent Gallery Category:',
+            'edit_item' => 'Edit Gallery Category',
+            'update_item' => 'Update Gallery Category',
+            'add_new_item' => 'Add New Gallery Category',
+            'new_item_name' => 'New Gallery Category Name',
+            'menu_name' => 'Gallery Categories',
+        ),
+        'show_ui' => true,
+        'query_var' => true,
+        'rewrite' => array('slug' => 'gallery-category'), // Customize the slug as needed
+    );
+
+    register_taxonomy('gallery_category', 'gallery', $taxonomy_args);
+}
+
+function get_gallery_items() {
+
+	$args = array(
+		'post_type' => 'gallery',
+		'posts_per_page' => -1,
+	);
+
+	$gallery_query = new WP_Query($args);
+	$gallery_items = array();
+	
+	if($gallery_query->have_posts()) {
+		while ($gallery_query->have_posts()){
+			$gallery_query->the_post();
+			$featured_image_id = get_post_thumbnail_id();
+			$featured_image_url = $featured_image_id ? wp_get_attachment_url($featured_image_id) : '';
+
+			$item = array(
+				'url' => $featured_image_url,
+				'title' => get_the_title(),
+				'category'=> get_the_terms(get_the_ID(), 'category'),
+ 			);
+
+			 $gallery_items[] = $item;
+		}
+		wp_reset_postdata();
+	}
+	return $gallery_items;
+}
+
+add_action('init', 'create_acordeon_post_type');
+
+function create_acordeon_post_type() {
+    $labels = array(
+        'name'               => 'Acordeon Assets',
+        'singular_name'      => 'Acordeon Item',
+        'menu_name'          => 'Acordeon Assets',
+        'name_admin_bar'     => 'Acordeon Item',
+        'add_new'            => 'Add New',
+        'add_new_item'       => 'Add New Acordeon Item',
+        'new_item'           => 'New Acordeon Item',
+        'edit_item'          => 'Edit Acordeon Item',
+        'view_item'          => 'View Acordeon Item',
+        'all_items'          => 'All Acordeon Items',
+        'search_items'       => 'Search Acordeon Items',
+        'parent_item_colon'  => 'Parent Acordeon Items:',
+        'not_found'          => 'No Acordeon items found.',
+        'not_found_in_trash' => 'No Acordeon items found in Trash.',
+    );
+
+    $args = array(
+        'labels'             => $labels,
+		// 'taxonomies' 		 => array('category'),
+        'public'             => true,
+        'publicly_queryable' => true,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'query_var'          => true,
+        'rewrite'            => array('slug' => 'acordeon-item'), // Customize the slug as needed
+        'capability_type'    => 'post',
+        'has_archive'        => true,
+        'hierarchical'       => false,
+        'menu_position'      => null,
+        'supports'           => array('title', 'editor', 'thumbnail', 'cat'), // Customize supports as needed
+    );
+
+    // Register the custom post type
+    register_post_type('accordeon', $args);
+
+	$taxonomy_args = array(
+        'hierarchical' => true,
+        'labels' => array(
+            'name' => 'Acordeon Categories',
+            'singular_name' => 'Acordeon Category',
+            'search_items' => 'Search Acordeon Categories',
+            'all_items' => 'All Acordeon Categories',
+            'parent_item' => 'Parent Acordeon Category',
+            'parent_item_colon' => 'Parent Acordeon Category:',
+            'edit_item' => 'Edit Acordeon Category',
+            'update_item' => 'Update Acordeon Category',
+            'add_new_item' => 'Add New Acordeon Category',
+            'new_item_name' => 'New Acordeon Category Name',
+            'menu_name' => 'Acordeon Categories',
+        ),
+        'show_ui' => true,
+        'query_var' => true,
+        'rewrite' => array('slug' => 'gallery-category'), // Customize the slug as needed
+    );
+
+    register_taxonomy('acordeon_category', 'acordeon', $taxonomy_args);
+}
+
+
+
+function enqueue_custom_script() {
+    // Replace 'your-theme' with the name of your theme's directory.
+    $theme_directory = get_stylesheet_directory_uri();
+    
+    // Enqueue the custom JS file.
+    wp_enqueue_script('slider', $theme_directory . '/js/slider.js', array('jquery'), '1.0', true);
+	$gallery_items = get_gallery_items();
+
+	wp_localize_script('slider', 'slider_data', $gallery_items);
+    wp_localize_script('slider', 'my_ajax_object',
+            array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
+}
+add_action('wp_enqueue_scripts', 'enqueue_custom_script');
+
 function enqueue_styles() {
-    wp_enqueue_style('breakerbreaker-styles', get_stylesheet_directory_uri() . '/styles.css');
+    wp_enqueue_style('breakerbreaker-styles', get_stylesheet_directory_uri() . '/css/styles.css');
 }
 add_action('wp_enqueue_scripts', 'enqueue_styles');
 // add_action( 'wp_enqueue_scripts', 'breakerbreaker_scripts' );
+
+
+
+// functions.php or custom PHP file
+function get_image_url_by_id($image_id) {
+    // Your code here to retrieve the image URL based on the provided image ID.
+    // For this example, we'll assume you have a custom function called 'get_image_url_by_id'.
+    // Replace this with your actual code that fetches the image URL.
+    // $image_url = get_image_url_by_id($image_id);
+	if ($image_id== "2"){
+		$image_url = "https://i.imgur.com/JPUkJMu.jpg";
+		return $image_url;
+	} else {
+		$image_url = "https://i.imgur.com/f7SqptB.jpeg";
+		return $image_url;
+	}
+}
+add_action('wp_ajax_get_image_url', 'ajax_get_image_url');
+add_action('wp_ajax_nopriv_get_image_url', 'ajax_get_image_url');
+
+function ajax_get_image_url() {
+    // Check for the passed image ID parameter in the AJAX request.
+    $image_id = isset($_POST['image_id']) ? $_POST['image_id'] : 0;
+
+    // Call the PHP function to get the image URL based on the provided image ID.
+    $image_url = get_image_url_by_id($image_id);
+
+    // Return the image URL as the AJAX response.
+    echo json_encode(array('image_url' => $image_url));
+    wp_die(); // Always include this line to terminate the AJAX call properly.
+}
 
 /**
  * Implement the Custom Header feature.

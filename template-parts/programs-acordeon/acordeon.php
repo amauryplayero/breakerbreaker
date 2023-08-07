@@ -1,6 +1,6 @@
 <?php
 /**
- * Template part for displaying posts
+ * Template part for displaying programs acordeon 
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
@@ -8,7 +8,7 @@
  */
 
 ?>
-<div class="a-spot-container">
-    haii!!! this is a big ol picture 
 
+<div>
+    
 </div>

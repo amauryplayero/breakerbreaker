@@ -4,7 +4,7 @@ body {
 }
 
 .nav-container {
-	top: 0;
+	background-color: white;
 	margin: 0 0 0 0;
 	position: fixed;
 	width: 100%;
@@ -49,14 +49,11 @@ body {
 	justify-content: center;
 }
 
-.a-spot-container {
-	border: red solid;
-	height: 500px;
+.nav-container .nav-options-container .nav-item a {
+	text-decoration: none;
 	width: 100%;
+	text-align: center;
+	color: black;
 }
 
-.nav-menu-container {
-	border: blue solid;
-}
-
-/*# sourceMappingURL=styles.css.map */
+/*# sourceMappingURL=navbar.css.map */

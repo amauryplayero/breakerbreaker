@@ -12,14 +12,9 @@
  * @package breakerbreaker
  */
 
-get_header();
+
 ?>
 
-	<main id="primary" class="site-main">
-		<?php get_template_part('template-parts/page-home/a-spot'); ?>
-	</main><!-- #main -->
-
-<?php
-// get_footer();
-get_template_part('template-parts/footer/footer');
-
+<div class="about-container">
+    haiiii this is breakerbreaker
+</div>

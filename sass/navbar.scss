@@ -5,7 +5,8 @@ body{
 }
 .nav-container{
     // border: red solid;
-    top:0;
+    background-color: white;
+    // border: blue solid;
     margin: 0 0 0 0;
     position: fixed;
     width: 100%;
@@ -34,6 +35,7 @@ body{
             margin: 0 0 0 0;
         }
         .nav-item{
+            
             display: flex;
             align-items: center;
             border: black solid;
@@ -42,6 +44,12 @@ body{
             list-style-type: none;
             display: flex;
             justify-content: center;
+            a{
+                text-decoration: none;
+                width: 100%;
+                text-align: center;
+                color: black;
+            }
         }
     }
 }
