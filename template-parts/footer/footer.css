@@ -1,7 +1,9 @@
 .footer-container {
-	height: 30vh;
 	background-color: black;
 	color: white;
+	position: fixed;
+	width: 100%;
+	bottom: 0;
 }
 
 /*# sourceMappingURL=footer.css.map */

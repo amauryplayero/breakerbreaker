@@ -239,6 +239,69 @@ function get_gallery_items() {
 	return $gallery_items;
 }
 
+add_action('init', 'create_acordeon_post_type');
+
+function create_acordeon_post_type() {
+    $labels = array(
+        'name'               => 'Acordeon Assets',
+        'singular_name'      => 'Acordeon Item',
+        'menu_name'          => 'Acordeon Assets',
+        'name_admin_bar'     => 'Acordeon Item',
+        'add_new'            => 'Add New',
+        'add_new_item'       => 'Add New Acordeon Item',
+        'new_item'           => 'New Acordeon Item',
+        'edit_item'          => 'Edit Acordeon Item',
+        'view_item'          => 'View Acordeon Item',
+        'all_items'          => 'All Acordeon Items',
+        'search_items'       => 'Search Acordeon Items',
+        'parent_item_colon'  => 'Parent Acordeon Items:',
+        'not_found'          => 'No Acordeon items found.',
+        'not_found_in_trash' => 'No Acordeon items found in Trash.',
+    );
+
+    $args = array(
+        'labels'             => $labels,
+		// 'taxonomies' 		 => array('category'),
+        'public'             => true,
+        'publicly_queryable' => true,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'query_var'          => true,
+        'rewrite'            => array('slug' => 'acordeon-item'), // Customize the slug as needed
+        'capability_type'    => 'post',
+        'has_archive'        => true,
+        'hierarchical'       => false,
+        'menu_position'      => null,
+        'supports'           => array('title', 'editor', 'thumbnail', 'cat'), // Customize supports as needed
+    );
+
+    // Register the custom post type
+    register_post_type('accordeon', $args);
+
+	$taxonomy_args = array(
+        'hierarchical' => true,
+        'labels' => array(
+            'name' => 'Acordeon Categories',
+            'singular_name' => 'Acordeon Category',
+            'search_items' => 'Search Acordeon Categories',
+            'all_items' => 'All Acordeon Categories',
+            'parent_item' => 'Parent Acordeon Category',
+            'parent_item_colon' => 'Parent Acordeon Category:',
+            'edit_item' => 'Edit Acordeon Category',
+            'update_item' => 'Update Acordeon Category',
+            'add_new_item' => 'Add New Acordeon Category',
+            'new_item_name' => 'New Acordeon Category Name',
+            'menu_name' => 'Acordeon Categories',
+        ),
+        'show_ui' => true,
+        'query_var' => true,
+        'rewrite' => array('slug' => 'gallery-category'), // Customize the slug as needed
+    );
+
+    register_taxonomy('acordeon_category', 'acordeon', $taxonomy_args);
+}
+
+
 
 function enqueue_custom_script() {
     // Replace 'your-theme' with the name of your theme's directory.

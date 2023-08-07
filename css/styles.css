@@ -57,25 +57,25 @@ body {
 }
 
 .footer-container {
-	height: 30vh;
 	background-color: black;
 	color: white;
+	position: fixed;
+	width: 100%;
+	bottom: 0;
 }
 
 .about-container {
 	height: 500px;
-	border: red solid;
 	padding-top: 30px;
 }
 
 .a-spot-container {
-	height: 75vh;
+	height: calc(100vh - 30px);
 	width: 100%;
 	padding-top: 30px;
 }
 
 .a-spot-container .a-spot-img-and-slider-container {
-	border: blue solid;
 	height: 100%;
 	display: flex;
 }
@@ -91,7 +91,6 @@ body {
 }
 
 .a-spot-container .a-spot-img-and-slider-container .a-spot-slider-container {
-	border: red solid;
 	width: 120px;
 	min-width: 120px;
 	display: flex;
@@ -129,11 +128,6 @@ body {
 
 .a-spot-container .a-spot-img-and-slider-container .a-spot-slider-container .down-arrow-container #left-button {
 	transform: rotate(90deg);
-}
-
-/*# sourceMappingURL=a-spot.css.map */
-.nav-menu-container {
-	border: blue solid;
 }
 
 /*# sourceMappingURL=styles.css.map */

@@ -20,6 +20,6 @@ get_header();
 	</main><!-- #main -->
 
 <?php
-
 // get_footer();
 get_template_part('template-parts/footer/footer');
+

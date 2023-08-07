@@ -1,6 +1,6 @@
 <?php
 /**
- * programs page
+ * Template part for displaying programs acordeon 
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
@@ -9,7 +9,6 @@
 
 ?>
 
-<?php 
-get_header();
-get_template_part('template-parts/navbar');
-?>
+<div>
+    
+</div>

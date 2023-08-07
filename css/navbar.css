@@ -30,7 +30,6 @@ body {
 }
 
 @media (min-width: 480px) {
-
 	.nav-container .nav-options-container {
 		display: flex;
 		width: fit-content;
@@ -56,3 +55,5 @@ body {
 	text-align: center;
 	color: black;
 }
+
+/*# sourceMappingURL=navbar.css.map */

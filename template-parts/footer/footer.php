@@ -11,7 +11,6 @@
 
     <div class="footer-container">
        THIS IS THE FOOTER 
-
     </div>
     <?php wp_footer(); ?>
 
