@@ -6,8 +6,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
 	const upBtn = document.getElementById( 'right-button' );
 	const aSpotImage = document.getElementById( 'image' );
 	const aSpotImageTitle = document.getElementById( 'img-title' );
-	console.log( 'ai' );
-
+	console.log('this is ocming from slider.js')
 
 	// get all the links at first so that I can just change them
 

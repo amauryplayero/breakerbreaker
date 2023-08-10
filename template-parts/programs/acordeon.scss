@@ -1,0 +1,33 @@
+#acordeon-wrapper{
+    border: black solid;
+    display: flex;
+    height: 700px;
+
+    .single-tab{
+        border: rgb(0, 0, 0) solid;
+        width: 8rem;
+        .title-container{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            .tab-title{
+                margin: 0 0 0 0;
+                writing-mode: vertical-rl;
+                transform: rotate(180deg);
+            }
+        }
+    }
+    .active{
+        width: 100%;
+        padding: 2rem;
+        h1{
+            margin: 0 0 0 0;
+        }
+    }
+    .content-container{
+        width: 100%;
+        border: blue solid;
+    }
+   
+}

@@ -134,20 +134,6 @@ function breakerbreaker_widgets_init() {
 }
 add_action( 'widgets_init', 'breakerbreaker_widgets_init' );
 
-/**
- * Enqueue scripts and styles.
- */
-// function breakerbreaker_scripts() {
-// 	wp_enqueue_style( 'breakerbreaker-styles', get_stylesheet_uri(), array(), _S_VERSION );
-// 	wp_style_add_data( 'breakerbreaker-styles', 'rtl', 'replace' );
-
-// 	wp_enqueue_script( 'breakerbreaker-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
-
-// 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-// 		wp_enqueue_script( 'comment-reply' );
-// 	}
-// }
-
 add_action('init', 'create_gallery_post_type');
 
 function create_gallery_post_type() {
@@ -209,38 +195,6 @@ function create_gallery_post_type() {
 
     register_taxonomy('gallery_category', 'gallery', $taxonomy_args);
 }
-
-function get_gallery_items() {
-
-	$args = array(
-		'post_type' => 'gallery',
-		'posts_per_page' => -1,
-	);
-
-	$gallery_query = new WP_Query($args);
-	$gallery_items = array();
-	
-	if($gallery_query->have_posts()) {
-		while ($gallery_query->have_posts()){
-			$gallery_query->the_post();
-			$featured_image_id = get_post_thumbnail_id();
-			$featured_image_url = $featured_image_id ? wp_get_attachment_url($featured_image_id) : '';
-
-			$item = array(
-				'url' => $featured_image_url,
-				'title' => get_the_title(),
-				'category'=> get_the_terms(get_the_ID(), 'category'),
- 			);
-
-			 $gallery_items[] = $item;
-		}
-		wp_reset_postdata();
-	}
-	return $gallery_items;
-}
-
-add_action('init', 'create_acordeon_post_type');
-
 function create_acordeon_post_type() {
     $labels = array(
         'name'               => 'Acordeon Assets',
@@ -276,7 +230,7 @@ function create_acordeon_post_type() {
     );
 
     // Register the custom post type
-    register_post_type('accordeon', $args);
+    register_post_type('acordeon', $args);
 
 	$taxonomy_args = array(
         'hierarchical' => true,
@@ -303,56 +257,107 @@ function create_acordeon_post_type() {
 
 
 
-function enqueue_custom_script() {
-    // Replace 'your-theme' with the name of your theme's directory.
-    $theme_directory = get_stylesheet_directory_uri();
-    
-    // Enqueue the custom JS file.
-    wp_enqueue_script('slider', $theme_directory . '/js/slider.js', array('jquery'), '1.0', true);
-	$gallery_items = get_gallery_items();
 
-	wp_localize_script('slider', 'slider_data', $gallery_items);
-    wp_localize_script('slider', 'my_ajax_object',
-            array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
+function get_gallery_items() {
+
+	$args = array(
+		'post_type' => 'gallery',
+		'posts_per_page' => -1,
+	);
+
+	$gallery_query = new WP_Query($args);
+	$gallery_items = array();
+	
+	if($gallery_query->have_posts()) {
+		while ($gallery_query->have_posts()){
+			$gallery_query->the_post();
+			$featured_image_id = get_post_thumbnail_id();
+			$featured_image_url = $featured_image_id ? wp_get_attachment_url($featured_image_id) : '';
+
+			$item = array(
+				'url' => $featured_image_url,
+				'title' => get_the_title(),
+				'category'=> get_the_terms(get_the_ID(), 'category'),
+ 			);
+
+			 $gallery_items[] = $item;
+		}
+		wp_reset_postdata();
+	}
+	return $gallery_items;
 }
-add_action('wp_enqueue_scripts', 'enqueue_custom_script');
+function get_acordeon_items() {
+
+	$args = array(
+		'post_type' => 'acordeon',
+		'posts_per_page' => -1,
+	);
+
+	$acordeon_query = new WP_Query($args);
+	$acordeon_items = array();
+	
+	if($acordeon_query->have_posts()) {
+		while ($acordeon_query->have_posts()){
+			$acordeon_query->the_post();
+			$featured_image_id = get_post_thumbnail_id();
+			$featured_image_url = $featured_image_id ? wp_get_attachment_url($featured_image_id) : '';
+			
+
+			$item = array(
+				'url' => $featured_image_url,
+				'title' => get_the_title(),
+				'category'=> get_the_terms(get_the_ID(), 'category'),
+				'summary' => get_the_content(),
+ 			);
+
+			 $acordeon_items[] = $item;
+		}
+		wp_reset_postdata();
+	}
+	return $acordeon_items;
+}
+
+add_action('get_header', function() {
+	
+    if(is_page('Programs')) {
+		function enqueue_custom_script() {
+			$theme_directory = get_template_directory_uri();
+		
+			wp_enqueue_script('programs-acordeon', $theme_directory . '/js/acordeon.js', array('jquery'), '1.0', true);
+			$acordeon_items = get_acordeon_items();
+		
+			wp_localize_script('programs-acordeon', 'acordeon_data', $acordeon_items);
+			wp_localize_script('programs-acordeon', 'my_ajax_object',
+					array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
+		}
+		add_action('wp_enqueue_scripts', 'enqueue_custom_script');
+    }
+	else if(is_page('')){
+		function enqueue_custom_script() {
+			$theme_directory = get_stylesheet_directory_uri();
+			wp_enqueue_script('slider', $theme_directory . '/js/slider.js', array('jquery'), '1.0', true);
+
+			$gallery_items = get_gallery_items();
+		
+			wp_localize_script('slider', 'slider_data', $gallery_items);
+			wp_localize_script('slider', 'my_ajax_object',
+					array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
+		}
+		add_action('wp_enqueue_scripts', 'enqueue_custom_script');
+	}
+});
+
+
+add_action('init', 'create_acordeon_post_type');
+
+
 
 function enqueue_styles() {
     wp_enqueue_style('breakerbreaker-styles', get_stylesheet_directory_uri() . '/css/styles.css');
 }
 add_action('wp_enqueue_scripts', 'enqueue_styles');
-// add_action( 'wp_enqueue_scripts', 'breakerbreaker_scripts' );
 
 
-
-// functions.php or custom PHP file
-function get_image_url_by_id($image_id) {
-    // Your code here to retrieve the image URL based on the provided image ID.
-    // For this example, we'll assume you have a custom function called 'get_image_url_by_id'.
-    // Replace this with your actual code that fetches the image URL.
-    // $image_url = get_image_url_by_id($image_id);
-	if ($image_id== "2"){
-		$image_url = "https://i.imgur.com/JPUkJMu.jpg";
-		return $image_url;
-	} else {
-		$image_url = "https://i.imgur.com/f7SqptB.jpeg";
-		return $image_url;
-	}
-}
-add_action('wp_ajax_get_image_url', 'ajax_get_image_url');
-add_action('wp_ajax_nopriv_get_image_url', 'ajax_get_image_url');
-
-function ajax_get_image_url() {
-    // Check for the passed image ID parameter in the AJAX request.
-    $image_id = isset($_POST['image_id']) ? $_POST['image_id'] : 0;
-
-    // Call the PHP function to get the image URL based on the provided image ID.
-    $image_url = get_image_url_by_id($image_id);
-
-    // Return the image URL as the AJAX response.
-    echo json_encode(array('image_url' => $image_url));
-    wp_die(); // Always include this line to terminate the AJAX call properly.
-}
 
 /**
  * Implement the Custom Header feature.

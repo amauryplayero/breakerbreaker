@@ -1,0 +1,39 @@
+#acordeon-wrapper {
+	border: black solid;
+	display: flex;
+	height: 700px;
+}
+
+#acordeon-wrapper .single-tab {
+	border: black solid;
+	width: 8rem;
+}
+
+#acordeon-wrapper .single-tab .title-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+}
+
+#acordeon-wrapper .single-tab .title-container .tab-title {
+	margin: 0 0 0 0;
+	writing-mode: vertical-rl;
+	transform: rotate(180deg);
+}
+
+#acordeon-wrapper .active {
+	width: 100%;
+	padding: 2rem;
+}
+
+#acordeon-wrapper .active h1 {
+	margin: 0 0 0 0;
+}
+
+#acordeon-wrapper .content-container {
+	width: 100%;
+	border: blue solid;
+}
+
+/*# sourceMappingURL=acordeon.css.map */

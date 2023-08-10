@@ -1,17 +1,17 @@
 <?php
 /**
- * programs page
+ * FRONT PAGE
  *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
  * @package breakerbreaker
  */
 
 ?>
 
-<?php 
+<?php get_template_part('template-parts/page-home/a-spot'); ?>
+
+<?php
 get_header();
 get_template_part('template-parts/navbar');
-get_template_part('template-parts/programs/acordeon');
 get_template_part('template-parts/footer/footer');
 ?>
