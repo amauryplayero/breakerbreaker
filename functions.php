@@ -254,8 +254,11 @@ function create_acordeon_post_type() {
 
     register_taxonomy('acordeon_category', 'acordeon', $taxonomy_args);
 }
-
-
+function breakerbreaker_scripts() {
+	wp_enqueue_style( 'breakerbreaker-style', get_stylesheet_uri(), array(), _S_VERSION );
+	wp_style_add_data( 'breakerbreaker-style', 'rtl', 'replace' );
+}
+add_action( 'wp_enqueue_scripts', 'breakerbreaker_scripts' );
 
 
 function get_gallery_items() {
@@ -318,17 +321,17 @@ function get_acordeon_items() {
 }
 
 add_action('get_header', function() {
-	
+
     if(is_page('Programs')) {
 		function enqueue_custom_script() {
 			$theme_directory = get_template_directory_uri();
-		
+		    
 			wp_enqueue_script('programs-acordeon', $theme_directory . '/js/acordeon.js', array('jquery'), '1.0', true);
 			$acordeon_items = get_acordeon_items();
-		
+			
 			wp_localize_script('programs-acordeon', 'acordeon_data', $acordeon_items);
 			wp_localize_script('programs-acordeon', 'my_ajax_object',
-					array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
+			array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
 		}
 		add_action('wp_enqueue_scripts', 'enqueue_custom_script');
     }
@@ -336,7 +339,7 @@ add_action('get_header', function() {
 		function enqueue_custom_script() {
 			$theme_directory = get_stylesheet_directory_uri();
 			wp_enqueue_script('slider', $theme_directory . '/js/slider.js', array('jquery'), '1.0', true);
-
+			wp_enqueue_script('splide.min', $theme_directory . '/js/splide.min.js', array('jquery'), '1.0', true);
 			$gallery_items = get_gallery_items();
 		
 			wp_localize_script('slider', 'slider_data', $gallery_items);

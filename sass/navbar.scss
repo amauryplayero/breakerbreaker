@@ -4,18 +4,16 @@ body{
     font-family: "Space Grotesk";
 }
 .nav-container{
-    // border: red solid;
     background-color: white;
-    // border: blue solid;
     margin: 0 0 0 0;
-    top:30px;
+    // top:30px;
+    top:0px;
     position: fixed;
     width: 100%;
     height: 30px;
     display: flex;
     justify-content: space-between;
     .nav-logo-container{
-        // border: purple solid;
     }
     .nav-copy-container{
         display: flex;

@@ -8,26 +8,19 @@
  */
 
 ?>
-<div class="a-spot-container">
-    <div class="a-spot-img-and-slider-container">
-        <div class="a-spot-image-container">
-            <img id="image" src="">
-        </div>
-
-        <div class="a-spot-slider-container">
-
-            <div class="up-arrow-container">
-                <button id="right-button">></button>
-            </div>
-
-            <div class="title-container">
-                <h1 id="img-title">this is AB</h1>
-            </div>
-
-            <div class="down-arrow-container">
-                <button id="left-button">< </button>
-            </div>
+<div class="splide" role="group" aria-label="Splide Basic HTML Example">
+  <div class="splide__track">
+		<ul class="splide__list">
+			<!-- <li class="splide__slide"><img id="image" src="http://breakbreaker.local/wp-content/uploads/2023/07/6491dc9a9e7ae650b65643b8_R0001_F001.jpeg"></li>
+			<li class="splide__slide"><img id="image" src="https://i.imgur.com/d8MR2KV.jpeg"></li> -->
+			<!-- <li class="splide__slide"></li> -->
             
-        </div>
+		</ul>
+  </div>
+</div>
+
+<div class="a-spot-slider-arrows-container">
+    <div class="active-slide-container">
+        <p class="active-slide"></p>
     </div>
 </div>

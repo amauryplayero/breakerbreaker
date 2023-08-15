@@ -1,12 +1,13 @@
 #acordeon-wrapper {
 	border: black solid;
 	display: flex;
-	height: 700px;
+	height: calc(100vh - 70px);
 }
 
 #acordeon-wrapper .single-tab {
 	border: black solid;
 	width: 8rem;
+	background-size: cover;
 }
 
 #acordeon-wrapper .single-tab .title-container {
@@ -14,6 +15,7 @@
 	align-items: center;
 	justify-content: center;
 	height: 100%;
+	cursor: pointer;
 }
 
 #acordeon-wrapper .single-tab .title-container .tab-title {

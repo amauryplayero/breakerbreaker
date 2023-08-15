@@ -1,16 +1,18 @@
 #acordeon-wrapper{
     border: black solid;
     display: flex;
-    height: 700px;
+    height: calc(100vh - 70px);
 
     .single-tab{
         border: rgb(0, 0, 0) solid;
         width: 8rem;
+        background-size: cover;
         .title-container{
             display: flex;
             align-items: center;
             justify-content: center;
             height: 100%;
+            cursor: pointer;
             .tab-title{
                 margin: 0 0 0 0;
                 writing-mode: vertical-rl;

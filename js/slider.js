@@ -1,37 +1,38 @@
 /* eslint-disable */ 
 document.addEventListener( 'DOMContentLoaded', () => {
 
+	const data = slider_data
+	const aSpotSlideListEl = document.querySelector( '.splide__list' );
 
-	const downBtn = document.getElementById( 'left-button' );
-	const upBtn = document.getElementById( 'right-button' );
-	const aSpotImage = document.getElementById( 'image' );
-	const aSpotImageTitle = document.getElementById( 'img-title' );
-	console.log('this is ocming from slider.js')
+console.log(data)
 
-	// get all the links at first so that I can just change them
-
-	let slide = 0;
-	aSpotImage.src = slider_data[ slide ].url;
-	aSpotImageTitle.textContent = slider_data[ slide ].title
-	function switchSlide( direction ) {
-		if ( direction === 'up' ) {
-			if ( slide < slider_data.length - 1 ) {
-				slide++;
-			} else {
-				slide = 0;
-			}
-		} else {
-			if( slide !== 0 ){
-				slide--;
-			} else {
-				slide = slider_data.length-1
-			}
-		} 
-		aSpotImage.src = slider_data[ slide ].url;
-		aSpotImageTitle.textContent = slider_data[ slide ].title
-
+	const updateActiveSlideText = (slide) => {
+		const activeSlide = document.querySelector('.active-slide')
+		activeSlide.textContent = slide.slide.children[0].title
 	}
+	const populateSlider = () => {
+		const activeSlide = document.querySelector('.active-slide')
+		for(let i = 0 ; i < data.length;i++){
+			const slide = document.createElement('li')
+			slide.className="splide__slide"
+			slide.innerHTML = `<img id="image" src="${data[i].url}" title="${data[i].title}">`
+			aSpotSlideListEl.appendChild(slide)
+			console.log('div' + i + 'appended')
+		}
+		activeSlide.textContent = data[0].title
+	}
+	
+	var splide = new Splide( '.splide', {
+		direction: 'ttb',
+		height   : '100vh',
+		wheel    : true,
+		wheelSleep: 1500,
+	} );
 
-	upBtn.addEventListener( 'click', () => switchSlide( 'up' ) );
-	downBtn.addEventListener( 'click', () => switchSlide( 'down' ) );
+	
+	populateSlider()
+	splide.mount();
+
+	splide.on( 'active', (slide)=>{updateActiveSlideText(slide)})
+
 } );

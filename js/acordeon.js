@@ -24,16 +24,16 @@ const data = acordeon_data
         `
         div.querySelector(".title-container").addEventListener('click', (e)=>makeTabActive(e))
         div.querySelector(".tab-title").addEventListener('click', function(event) {
-        event.stopPropagation()
-        // Create a new click event targeting the parentDiv
-        const newEvent = new MouseEvent('click', {
-            bubbles: true, // Allow the event to bubble up
-            cancelable: true,
-            view: window
-        });
-        
-            // Dispatch the new click event on the parentDiv
-            div.querySelector(".title-container").dispatchEvent(newEvent);
+            event.stopPropagation()
+            // Create a new click event targeting the parentDiv
+            const newEvent = new MouseEvent('click', {
+                bubbles: true, // Allow the event to bubble up
+                cancelable: true,
+                view: window
+            });
+            
+                // Dispatch the new click event on the parentDiv
+                div.querySelector(".title-container").dispatchEvent(newEvent);
         })
 
     }
@@ -62,6 +62,7 @@ const data = acordeon_data
         div.className="single-tab"
         // might want to add an id property when the program post is created
         div.id=i
+        div.style.backgroundImage=`url("${data[div.id].url}")`
         if(lastSlide){
             div.className="single-tab active"
         } else {
