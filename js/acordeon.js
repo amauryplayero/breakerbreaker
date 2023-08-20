@@ -7,12 +7,45 @@ const data = acordeon_data
 
     const appendContentToTab = (id) =>{
         const activeTab = document.getElementById(id)
+        const thumbnails = Object.values(acordeon_data[id].thumbnails);
+        const videosData = acordeon_data[id].videos
+        const videoFrames = []
+
+        
         const html = `
-            <h1> ${data[id].title} </h1> 
-            <p> ${data[id].summary} </p>
-            <div> video content here! </div>
+        <h1> ${data[id].title} </h1> 
+        <p> ${data[id].summary} </p>
+        <div id="video-div"> 
+            <div class="splide" role="group" aria-label="Splide Basic HTML Example">
+                <div class="splide__track">
+                        <ul class="splide__list" id="splide__list">
+              
+                        </ul>
+                </div>
+            </div>
+        </div>
         `
         activeTab.innerHTML = html
+        const videoList = document.querySelector('#splide__list')
+
+
+        console.log(Object.values(thumbnails))
+        for(let i =0; i<thumbnails.length; i++){
+            const li = document.createElement('li')
+            li.className="splide__slide"
+            li.innerHTML=`<iframe width="200" height="115" src="${thumbnails[i]}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
+            // li.innerHTML=`haiii`
+            videoList.appendChild(li)
+        }
+        console.log(videoList)
+        const splide = new Splide( '.splide', {
+            perPage: 3,
+            rewind : true,
+          } );
+          
+        splide.mount();
+        
+        
     }
 
     const renderClosedTab = (div,id) =>{
@@ -51,8 +84,6 @@ const data = acordeon_data
         // change active tab
         const newActiveDiv = document.getElementById(id)
         newActiveDiv.className = "single-tab active"
-
-        // append content info to active tab
         appendContentToTab(id)
     }
 
@@ -75,8 +106,16 @@ const data = acordeon_data
     const singleTab = document.getElementsByClassName('single-tab');
 
     
-
+    // const splide = new Splide( '.splide', {
+    //     perPage: 3,
+    //     rewind : true,
+    //   } );
+      
+    // splide.mount();
   
+
+
+
 
     
   

@@ -1,100 +1,3 @@
-@import url(../../css/splide-default.min.css);
-@import url(../../css/splide.min.css);
-body {
-	margin: 0 0 0 0;
-	font-family: "Space Grotesk";
-}
-
-.nav-container {
-	background-color: white;
-	margin: 0 0 0 0;
-	top: 0px;
-	position: fixed;
-	width: 100%;
-	height: 30px;
-	display: flex;
-	justify-content: space-between;
-}
-
-.nav-container .nav-copy-container {
-	display: flex;
-	align-items: center;
-	width: 100%;
-	border-top: black solid;
-	border-bottom: black solid;
-}
-
-.nav-container .nav-copy-container p {
-	margin: 0 0 0 0;
-}
-
-.nav-container .nav-options-container {
-	display: none;
-}
-
-@media (min-width: 480px) {
-	.nav-container .nav-options-container {
-		display: flex;
-		width: fit-content;
-		padding: 0 0 0 0;
-		margin: 0 0 0 0;
-	}
-}
-
-.nav-container .nav-options-container .nav-item {
-	display: flex;
-	align-items: center;
-	border: black solid;
-	width: 120px;
-	text-decoration: none;
-	list-style-type: none;
-	display: flex;
-	justify-content: center;
-}
-
-.nav-container .nav-options-container .nav-item a {
-	text-decoration: none;
-	width: 100%;
-	text-align: center;
-	color: black;
-}
-
-.footer-container {
-	background-color: black;
-	color: white;
-	position: fixed;
-	width: 100%;
-	bottom: 0;
-}
-
-.about-container {
-	height: 500px;
-}
-
-.a-spot-slider-arrows-container {
-	position: absolute;
-	top: 0px;
-	right: 0;
-	border-left: black solid;
-	width: 121px;
-	background-color: white;
-	height: 100%;
-}
-
-.a-spot-slider-arrows-container .active-slide-container {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	height: 100%;
-}
-
-.a-spot-slider-arrows-container .active-slide-container .active-slide {
-	margin: 0 0 0 0;
-	writing-mode: vertical-rl;
-	transform: rotate(180deg);
-}
-
 .splide__container {
 	box-sizing: border-box;
 	position: relative;
@@ -164,9 +67,6 @@ body {
 
 .splide__slide img {
 	vertical-align: bottom;
-	height: 100%;
-	width: 100%;
-	object-fit: cover;
 }
 
 .splide__spinner {
@@ -213,9 +113,11 @@ body {
 }
 
 @keyframes splide-loading {
+
 	0% {
 		transform: rotate(0);
 	}
+
 	to {
 		transform: rotate(1turn);
 	}
@@ -361,7 +263,8 @@ body {
 	outline: 0;
 }
 
-@supports (outline-offset: -3px) {
+@supports (outline-offset:-3px) {
+
 	.splide__slide:focus-visible {
 		outline: 3px solid #0bf;
 		outline-offset: -3px;
@@ -369,12 +272,14 @@ body {
 }
 
 @media screen and (-ms-high-contrast: none) {
+
 	.splide__slide:focus-visible {
 		border: 3px solid #0bf;
 	}
 }
 
-@supports (outline-offset: -3px) {
+@supports (outline-offset:-3px) {
+
 	.splide.is-focus-in .splide__slide:focus {
 		outline: 3px solid #0bf;
 		outline-offset: -3px;
@@ -382,9 +287,11 @@ body {
 }
 
 @media screen and (-ms-high-contrast: none) {
+
 	.splide.is-focus-in .splide__slide:focus {
 		border: 3px solid #0bf;
 	}
+
 	.splide.is-focus-in .splide__track > .splide__list > .splide__slide:focus {
 		border-color: #0bf;
 	}
@@ -432,12 +339,12 @@ body {
 }
 
 .splide__arrows--ttb .splide__arrow {
-	left: 96%;
+	left: 50%;
 	transform: translate(-50%);
 }
 
 .splide__arrows--ttb .splide__arrow--prev {
-	top: 6em;
+	top: 1em;
 }
 
 .splide__arrows--ttb .splide__arrow--prev svg {
@@ -445,7 +352,7 @@ body {
 }
 
 .splide__arrows--ttb .splide__arrow--next {
-	bottom: 6em;
+	bottom: 1em;
 	top: auto;
 }
 
@@ -464,47 +371,3 @@ body {
 	right: 0.5em;
 	top: 0;
 }
-
-/*# sourceMappingURL=splide-default.min.css.map */
-/*# sourceMappingURL=splide-default.min.css.map */
-#acordeon-wrapper {
-	border: black solid;
-	display: flex;
-	height: calc(100vh - 70px);
-}
-
-#acordeon-wrapper .single-tab {
-	border: black solid;
-	width: 8rem;
-	background-size: cover;
-}
-
-#acordeon-wrapper .single-tab .title-container {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 100%;
-	cursor: pointer;
-}
-
-#acordeon-wrapper .single-tab .title-container .tab-title {
-	margin: 0 0 0 0;
-	writing-mode: vertical-rl;
-	transform: rotate(180deg);
-}
-
-#acordeon-wrapper .active {
-	width: 100%;
-	padding: 2rem;
-}
-
-#acordeon-wrapper .active h1 {
-	margin: 0 0 0 0;
-}
-
-#acordeon-wrapper .content-container {
-	width: 100%;
-	border: blue solid;
-}
-
-/*# sourceMappingURL=styles.css.map */

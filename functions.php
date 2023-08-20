@@ -254,6 +254,87 @@ function create_acordeon_post_type() {
 
     register_taxonomy('acordeon_category', 'acordeon', $taxonomy_args);
 }
+
+function render_custom_metabox($post) {
+	echo '<textarea id="custom-iframe-code" name="custom_iframe_code" rows="6" cols="60">' . '</textarea>';
+
+///////////////////////////////////// SAVED THUMBNAILS LOGIC ////////////////////////////////
+ 
+	$saved_iframes = get_post_meta($post->ID, 'custom_iframe_code', false);
+	echo '<h4>Saved iframes:</h4>';
+	if($saved_iframes){
+        echo '<ul>';
+        foreach ($saved_iframes[0] as $index => $iframe_code) {
+			// var_dump($iframe_code);
+			echo '<li>' . esc_html($iframe_code) . '</li>';
+			echo '<form method="post" action="">';
+			echo '<input type="hidden" name="delete_iframe_id" value="' . $index . '">';
+			echo '<input type="hidden" name="post_id" value="' . $post->ID . '">';
+			echo '<iframe width="260" height="115" src="' . $iframe_code . '" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+			echo '<button type="submit" name="delete_iframe_submit">Delete</button>';
+			echo '</form>';
+        }
+        echo '</ul>';
+	}
+}
+
+function process_delete_iframe_submission($post) {
+	if (isset($_POST['delete_iframe_submit'])) {
+		$meta_index = sanitize_text_field($_POST['delete_iframe_id']);
+		$post_id =sanitize_text_field($_POST['post_id']);
+		delete_thumbnail_meta_data($meta_index, $post_id);
+	}
+}
+add_action('init', 'process_delete_iframe_submission');
+
+function delete_thumbnail_meta_data($meta_index, $post_id ) {
+	$existing_thumbnails = get_post_meta($post_id, 'custom_iframe_code', true);
+
+	if (is_array($existing_thumbnails)) {
+		unset($existing_thumbnails[$meta_index]);
+        update_post_meta($post_id, 'custom_iframe_code', $existing_thumbnails);
+    }
+
+}
+
+function add_custom_metabox() {
+    add_meta_box('custom_iframe_code', 'Video thumbnails for Programs', 'render_custom_metabox', 'acordeon', 'normal', 'default');
+}
+add_action('add_meta_boxes', 'add_custom_metabox');
+
+function save_custom_iframe_code($post_id) {
+
+    // Check if this is an autosave
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
+
+    // Check if the user has permissions to save
+    if (!current_user_can('edit_post', $post_id)) return;
+
+    // Sanitize and save the iframe code
+    if (isset($_POST['custom_iframe_code'])) {
+        $iframe_code = sanitize_text_field($_POST['custom_iframe_code']);
+		if(!$iframe_code){
+			return false;
+		}
+		$existing_thumbnails = get_post_meta($post_id, 'custom_iframe_code', true);
+		if(!is_array($existing_thumbnails)){
+			$existing_thumbnails = array();
+		} 
+
+        // Add the entry with the unique identifier
+		$existing_thumbnails[] = $iframe_code;
+
+        // Update the meta data with the modified array
+		update_post_meta($post_id, 'custom_iframe_code', $existing_thumbnails);
+    }
+}
+add_action('save_post', 'save_custom_iframe_code');
+
+
+
+
+
+
 function breakerbreaker_scripts() {
 	wp_enqueue_style( 'breakerbreaker-style', get_stylesheet_uri(), array(), _S_VERSION );
 	wp_style_add_data( 'breakerbreaker-style', 'rtl', 'replace' );
@@ -311,6 +392,7 @@ function get_acordeon_items() {
 				'title' => get_the_title(),
 				'category'=> get_the_terms(get_the_ID(), 'category'),
 				'summary' => get_the_content(),
+				'thumbnails' => get_post_meta(get_the_ID(), 'custom_iframe_code', true),
  			);
 
 			 $acordeon_items[] = $item;
@@ -327,7 +409,9 @@ add_action('get_header', function() {
 			$theme_directory = get_template_directory_uri();
 		    
 			wp_enqueue_script('programs-acordeon', $theme_directory . '/js/acordeon.js', array('jquery'), '1.0', true);
+			wp_enqueue_script('splide.min', $theme_directory . '/js/splide.min.js', array('jquery'), '1.0', true);
 			$acordeon_items = get_acordeon_items();
+
 			
 			wp_localize_script('programs-acordeon', 'acordeon_data', $acordeon_items);
 			wp_localize_script('programs-acordeon', 'my_ajax_object',
