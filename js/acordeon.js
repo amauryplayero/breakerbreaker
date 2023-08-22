@@ -13,8 +13,8 @@ const data = acordeon_data
 
         
         const html = `
-        <h1> ${data[id].title} </h1> 
-        <p> ${data[id].summary} </p>
+        <h1 class="programs-title"> ${data[id].title} </h1> 
+        <p class="programs-summary"> ${data[id].summary} </p>
         <div id="video-div"> 
             <div class="splide" role="group" aria-label="Splide Basic HTML Example">
                 <div class="splide__track">

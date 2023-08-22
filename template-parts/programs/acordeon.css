@@ -2,7 +2,10 @@
 #acordeon-wrapper {
 	border: black solid;
 	display: flex;
-	height: calc(100vh - 70px);
+	height: calc(100vh - 60px);
+	border-top: 0;
+	border-bottom: 0;
+	margin-top: 30px;
 }
 
 #acordeon-wrapper .single-tab {
@@ -37,6 +40,29 @@
 #acordeon-wrapper .content-container {
 	width: 100%;
 	border: blue solid;
+}
+
+#acordeon-wrapper .programs-title {
+	font-size: 5em;
+	color: white;
+}
+
+#acordeon-wrapper .programs-summary {
+	font-size: 2em;
+	color: white;
+}
+
+#video-div {
+	max-width: 49em;
+}
+
+.splide__slide {
+	display: flex;
+	justify-content: center;
+}
+
+.splide__arrow--next {
+	right: 0;
 }
 
 /*# sourceMappingURL=acordeon.css.map */

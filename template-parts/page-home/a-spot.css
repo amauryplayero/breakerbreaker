@@ -21,6 +21,7 @@
 	margin: 0 0 0 0;
 	writing-mode: vertical-rl;
 	transform: rotate(180deg);
+	font-size: 2.5em;
 }
 
 .splide__container {
@@ -178,7 +179,6 @@
 .splide__arrow {
 	-ms-flex-align: center;
 	align-items: center;
-	background: #ccc;
 	border: 0;
 	border-radius: 50%;
 	cursor: pointer;
@@ -213,10 +213,6 @@
 .splide__arrow:focus-visible {
 	outline: 3px solid #0bf;
 	outline-offset: 3px;
-}
-
-.splide__arrow--prev {
-	left: 1em;
 }
 
 .splide__arrow--prev svg {
@@ -343,7 +339,7 @@
 
 .splide__arrows--rtl .splide__arrow--prev {
 	left: auto;
-	right: 1em;
+	right: 0;
 }
 
 .splide__arrows--rtl .splide__arrow--prev svg {
@@ -351,7 +347,7 @@
 }
 
 .splide__arrows--rtl .splide__arrow--next {
-	left: 1em;
+	right: 0;
 	right: auto;
 }
 
@@ -360,12 +356,14 @@
 }
 
 .splide__arrows--ttb .splide__arrow {
-	left: 96%;
+	right: 0;
 	transform: translate(-50%);
+	padding-right: 2.7em;
 }
 
 .splide__arrows--ttb .splide__arrow--prev {
 	top: 6em;
+	background: none;
 }
 
 .splide__arrows--ttb .splide__arrow--prev svg {
@@ -374,6 +372,7 @@
 
 .splide__arrows--ttb .splide__arrow--next {
 	bottom: 6em;
+	background: none;
 	top: auto;
 }
 
@@ -391,6 +390,15 @@
 	padding: 1em 0;
 	right: 0.5em;
 	top: 0;
+}
+
+.arrow-image-backward {
+	width: 2em;
+	transform: rotate(180deg);
+}
+
+.arrow-image-forward {
+	width: 2em;
 }
 
 /*# sourceMappingURL=splide-default.min.css.map */

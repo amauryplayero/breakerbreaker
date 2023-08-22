@@ -3,8 +3,11 @@
 #acordeon-wrapper{
     border: black solid;
     display: flex;
-    height: calc(100vh - 70px);
-
+    height: calc(100vh - 60px);
+    border-top: 0;
+    border-bottom: 0;
+    margin-top: 30px;
+    
     .single-tab{
         border: rgb(0, 0, 0) solid;
         width: 8rem;
@@ -33,9 +36,27 @@
         width: 100%;
         border: blue solid;
     }
-   
+    
+    .programs-title{
+        font-size:5em;
+        color:white;
+    }
+    .programs-summary{
+        font-size:2em;
+        color: white;
+    }
+}
+
+#video-div{
+    
+    max-width: 49em;
 }
 
 .splide__slide{
-    // border: red solid
+    display: flex;
+    justify-content: center;
+}
+
+.splide__arrow--next{
+    right:0;
 }
