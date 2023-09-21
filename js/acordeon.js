@@ -1,10 +1,9 @@
 /* eslint-disable */ 
 document.addEventListener( 'DOMContentLoaded', () => {
-console.log(acordeon_data)
 const acordeonContainer = document.getElementById('acordeon-wrapper');
 const data = acordeon_data
 
-
+console.log(data)
     const appendContentToTab = (id) =>{
         const activeTab = document.getElementById(id)
         const thumbnails = Object.values(acordeon_data[id].thumbnails);
@@ -19,7 +18,6 @@ const data = acordeon_data
             <div class="splide" role="group" aria-label="Splide Basic HTML Example">
                 <div class="splide__track">
                         <ul class="splide__list" id="splide__list">
-              
                         </ul>
                 </div>
             </div>
@@ -27,17 +25,14 @@ const data = acordeon_data
         `
         activeTab.innerHTML = html
         const videoList = document.querySelector('#splide__list')
-
-
         console.log(Object.values(thumbnails))
         for(let i =0; i<thumbnails.length; i++){
             const li = document.createElement('li')
-            li.className="splide__slide"
-            li.innerHTML=`<iframe width="200" height="115" src="${thumbnails[i]}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
+            li.className="splide__slide acordeon"
+            li.innerHTML=`<iframe width="100%" height="200" src="${thumbnails[i]}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
             // li.innerHTML=`haiii`
             videoList.appendChild(li)
         }
-        console.log(videoList)
         const splide = new Splide( '.splide', {
             perPage: 3,
             rewind : true,
@@ -75,10 +70,10 @@ const data = acordeon_data
 
     const makeTabActive = (e) =>{
         const pastActiveDiv = document.querySelector('.active')
+        const pastId = pastActiveDiv.id
         const id = e.target.parentNode.id
-
         //  clean up content by switching classes from pastActiveDiv and rendering to closed tab
-        renderClosedTab(pastActiveDiv, id)
+        renderClosedTab(pastActiveDiv, pastId)
         pastActiveDiv.className="single-tab"
             
         // change active tab
@@ -89,11 +84,10 @@ const data = acordeon_data
 
     for(let i = 0; i<data.length; i++){
         const div = document.createElement('div')
-        const lastSlide = i===data.length-1
+        const lastSlide = i===0
         div.className="single-tab"
         // might want to add an id property when the program post is created
         div.id=i
-        div.style.backgroundImage=`url("${data[div.id].url}")`
         if(lastSlide){
             div.className="single-tab active"
         } else {
@@ -104,24 +98,6 @@ const data = acordeon_data
     }
 
     const singleTab = document.getElementsByClassName('single-tab');
-
-    
-    // const splide = new Splide( '.splide', {
-    //     perPage: 3,
-    //     rewind : true,
-    //   } );
-      
-    // splide.mount();
-  
-
-
-
-
-    
-  
-
-
-    
 
 
 })

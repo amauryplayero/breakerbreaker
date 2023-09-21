@@ -2,9 +2,9 @@
 .a-spot-slider-arrows-container {
 	position: absolute;
 	top: 0px;
-	right: 0;
-	border-left: black solid;
-	width: 121px;
+	right: 2px;
+	border-left: 2px black solid;
+	width: 120px;
 	background-color: white;
 	height: 100%;
 }
@@ -74,6 +74,11 @@
 .splide {
 	position: relative;
 	visibility: hidden;
+	width: calc(100% - 4px);
+}
+
+.aspot {
+	border: 2px black solid;
 }
 
 .splide.is-initialized,

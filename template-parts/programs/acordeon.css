@@ -1,6 +1,5 @@
 @import url(../../css/splide.min.css);
 #acordeon-wrapper {
-	border: black solid;
 	display: flex;
 	height: calc(100vh - 60px);
 	border-top: 0;
@@ -9,8 +8,9 @@
 }
 
 #acordeon-wrapper .single-tab {
-	border: black solid;
-	width: 8rem;
+	border: 2px black solid;
+	border-right: none;
+	width: 5rem;
 	background-size: cover;
 }
 
@@ -26,6 +26,10 @@
 	margin: 0 0 0 0;
 	writing-mode: vertical-rl;
 	transform: rotate(180deg);
+}
+
+#acordeon-wrapper .single-tab:last-of-type {
+	border-right: 2px solid black;
 }
 
 #acordeon-wrapper .active {
@@ -44,21 +48,25 @@
 
 #acordeon-wrapper .programs-title {
 	font-size: 5em;
-	color: white;
+	color: black;
 }
 
 #acordeon-wrapper .programs-summary {
-	font-size: 2em;
-	color: white;
-}
-
-#video-div {
-	max-width: 49em;
+	font-size: 1em;
+	color: black;
 }
 
 .splide__slide {
 	display: flex;
 	justify-content: center;
+}
+
+.acordeon {
+	margin: 0 10px 0 10px;
+}
+
+.acordeon:first-of-type {
+	margin-left: 0;
 }
 
 .splide__arrow--next {

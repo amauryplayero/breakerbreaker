@@ -11,11 +11,16 @@
     <nav>
         <div class="nav-container">
             <div class="nav-logo-container">
-                <img src="https://i.imgur.com/ARuJjX4.jpg">
+                <img src="/wp-content/themes/breakerbreaker/assets/icons/breaker-icon-blk.png">
             </div>
 
             <div class="nav-copy-container">
-                <p>haiiii this is all copy lorem ipsum yea yea</p>
+                <div class="marquee">
+                    <div>
+                        <span>You spin me right round, baby. Like a record, baby.</span>
+                        <span>You spin me right round, baby. Like a record, baby.</span>
+                    </div>
+                </div>
             </div>
             
             <ul class="nav-options-container">

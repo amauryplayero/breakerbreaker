@@ -10,18 +10,61 @@ body {
 	margin: 0 0 0 0;
 	top: 0px;
 	position: fixed;
-	width: 100%;
-	height: 30px;
+	width: calc(100% - 2px);
+	height: 40px;
 	display: flex;
 	justify-content: space-between;
+	border: 2px black solid;
+}
+
+.nav-container .nav-logo-container {
+	width: 4em;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.nav-container .nav-logo-container img {
+	width: 100%;
 }
 
 .nav-container .nav-copy-container {
 	display: flex;
 	align-items: center;
 	width: 100%;
-	border-top: black solid;
-	border-bottom: black solid;
+}
+
+.nav-container .nav-copy-container .marquee {
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	position: relative;
+}
+
+.nav-container .nav-copy-container .marquee div {
+	display: flex;
+	align-items: center;
+	width: 200%;
+	height: 100%;
+	position: absolute;
+	overflow: hidden;
+	animation: marquee 5s linear infinite;
+}
+
+.nav-container .nav-copy-container .marquee span {
+	float: left;
+	width: 50%;
+	font-size: .9em;
+}
+
+@keyframes marquee {
+	0% {
+		left: 0;
+	}
+	100% {
+		left: -100%;
+	}
 }
 
 .nav-container .nav-copy-container p {
@@ -44,12 +87,12 @@ body {
 .nav-container .nav-options-container .nav-item {
 	display: flex;
 	align-items: center;
-	border: black solid;
 	width: 120px;
 	text-decoration: none;
 	list-style-type: none;
 	display: flex;
 	justify-content: center;
+	border-right: 2px black solid;
 }
 
 .nav-container .nav-options-container .nav-item a {
@@ -57,6 +100,11 @@ body {
 	width: 100%;
 	text-align: center;
 	color: black;
+	font-size: .9em;
+}
+
+.nav-container .nav-options-container .nav-item:first-of-type {
+	border-left: 2px black solid;
 }
 
 .footer-container {
@@ -65,10 +113,10 @@ body {
 	position: fixed;
 	display: flex;
 	justify-content: center;
-	width: 100%;
-	height: 30px;
+	width: calc(100% - 4px);
+	height: 40px;
 	bottom: 0;
-	border-top: 2px solid black;
+	border: 2px solid black;
 	align-items: center;
 }
 
@@ -79,9 +127,9 @@ body {
 .a-spot-slider-arrows-container {
 	position: absolute;
 	top: 0px;
-	right: 0;
-	border-left: black solid;
-	width: 121px;
+	right: 2px;
+	border-left: 2px black solid;
+	width: 120px;
 	background-color: white;
 	height: 100%;
 }
@@ -151,6 +199,11 @@ body {
 .splide {
 	position: relative;
 	visibility: hidden;
+	width: calc(100% - 4px);
+}
+
+.aspot {
+	border: 2px black solid;
 }
 
 .splide.is-initialized,
@@ -481,7 +534,6 @@ body {
 /*# sourceMappingURL=splide-default.min.css.map */
 /*# sourceMappingURL=splide-default.min.css.map */
 #acordeon-wrapper {
-	border: black solid;
 	display: flex;
 	height: calc(100vh - 60px);
 	border-top: 0;
@@ -490,8 +542,9 @@ body {
 }
 
 #acordeon-wrapper .single-tab {
-	border: black solid;
-	width: 8rem;
+	border: 2px black solid;
+	border-right: none;
+	width: 5rem;
 	background-size: cover;
 }
 
@@ -507,6 +560,10 @@ body {
 	margin: 0 0 0 0;
 	writing-mode: vertical-rl;
 	transform: rotate(180deg);
+}
+
+#acordeon-wrapper .single-tab:last-of-type {
+	border-right: 2px solid black;
 }
 
 #acordeon-wrapper .active {
@@ -525,21 +582,25 @@ body {
 
 #acordeon-wrapper .programs-title {
 	font-size: 5em;
-	color: white;
+	color: black;
 }
 
 #acordeon-wrapper .programs-summary {
-	font-size: 2em;
-	color: white;
-}
-
-#video-div {
-	max-width: 49em;
+	font-size: 1em;
+	color: black;
 }
 
 .splide__slide {
 	display: flex;
 	justify-content: center;
+}
+
+.acordeon {
+	margin: 0 10px 0 10px;
+}
+
+.acordeon:first-of-type {
+	margin-left: 0;
 }
 
 .splide__arrow--next {

@@ -437,7 +437,11 @@ add_action('get_header', function() {
 
 add_action('init', 'create_acordeon_post_type');
 
-
+function preload_favicon() {
+    $href = 'styles/main.css';
+    echo '<link rel="icon" href="/wp-content/themes/breakerbreaker/assets/icons/favicon.jpg">';
+}
+add_action( 'wp_head','preload_favicon');
 
 function enqueue_styles() {
     wp_enqueue_style('breakerbreaker-styles', get_stylesheet_directory_uri() . '/css/styles.css');
