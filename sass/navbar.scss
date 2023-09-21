@@ -20,6 +20,11 @@ body{
         display: flex;
         justify-content: center;
         align-items: center;
+        &:hover{
+            // transition:.10s ease-in-out;
+            // transform: rotateY(3.142rad);
+            // animation-fill-mode: forwards;
+        }
         img{
             width: 100%;
         }

@@ -146,7 +146,7 @@ body {
 	margin: 0 0 0 0;
 	writing-mode: vertical-rl;
 	transform: rotate(180deg);
-	font-size: 2.5em;
+	font-size: 2em;
 }
 
 .splide__container {
@@ -605,6 +605,10 @@ body {
 
 .splide__arrow--next {
 	right: 0;
+}
+
+body {
+	cursor: url("/wp-content/themes/breakerbreaker/assets/icons/cross.png"), auto !important;
 }
 
 /*# sourceMappingURL=styles.css.map */

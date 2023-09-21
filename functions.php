@@ -404,6 +404,11 @@ function get_acordeon_items() {
 
 add_action('get_header', function() {
 
+	function enqueue_custom_navbar_script() {
+		$theme_directory = get_stylesheet_directory_uri();
+		wp_enqueue_script('navbar', $theme_directory . '/js/navbar.js', array('jquery'), '1.0', true);
+	}
+	add_action('wp_enqueue_navbar_scripts', 'enqueue_custom_script');
     if(is_page('Programs')) {
 		function enqueue_custom_script() {
 			$theme_directory = get_template_directory_uri();
@@ -422,6 +427,7 @@ add_action('get_header', function() {
 	else if(is_page('')){
 		function enqueue_custom_script() {
 			$theme_directory = get_stylesheet_directory_uri();
+			wp_enqueue_script('navbar', $theme_directory . '/js/navbar.js', array('jquery'), '1.0', true);
 			wp_enqueue_script('slider', $theme_directory . '/js/slider.js', array('jquery'), '1.0', true);
 			wp_enqueue_script('splide.min', $theme_directory . '/js/splide.min.js', array('jquery'), '1.0', true);
 			$gallery_items = get_gallery_items();

@@ -1,6 +1,5 @@
 /* eslint-disable */ 
 document.addEventListener( 'DOMContentLoaded', () => {
-
 	const data = slider_data
 	const aSpotSlideListEl = document.querySelector( '.splide__list' );
 

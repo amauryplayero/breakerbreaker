@@ -10,9 +10,9 @@
 ?>
     <nav>
         <div class="nav-container">
-            <div class="nav-logo-container">
+            <a class="nav-logo-container" href="/">
                 <img src="/wp-content/themes/breakerbreaker/assets/icons/breaker-icon-blk.png">
-            </div>
+            </a>
 
             <div class="nav-copy-container">
                 <div class="marquee">
