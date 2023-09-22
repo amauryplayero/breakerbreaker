@@ -16,7 +16,7 @@ body {
 }
 
 .nav-container .nav-logo-container {
-	width: 4em;
+	width: 4.3em;
 	height: 100%;
 	display: flex;
 	justify-content: center;
@@ -25,6 +25,11 @@ body {
 
 .nav-container .nav-logo-container img {
 	width: 100%;
+}
+
+.nav-container .nav-logo-container img:hover {
+	transition: .5s ease-in-out;
+	transform: rotateY(3.142rad);
 }
 
 .nav-container .nav-copy-container {
@@ -48,12 +53,19 @@ body {
 	position: absolute;
 	overflow: hidden;
 	animation: marquee 5s linear infinite;
+	pointer-events: none;
+}
+
+.nav-container .nav-copy-container .marquee-item {
+	pointer-events: none;
+	overflow: hidden;
 }
 
 .nav-container .nav-copy-container .marquee span {
 	float: left;
 	width: 50%;
 	font-size: .9em;
+	pointer-events: none;
 }
 
 @keyframes marquee {

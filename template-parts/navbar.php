@@ -11,14 +11,14 @@
     <nav>
         <div class="nav-container">
             <a class="nav-logo-container" href="/">
-                <img src="/wp-content/themes/breakerbreaker/assets/icons/breaker-icon-blk.png">
+                <img id="logo-png" src="/wp-content/themes/breakerbreaker/assets/icons/breaker-icon-blk.png">
             </a>
 
             <div class="nav-copy-container">
                 <div class="marquee">
                     <div>
-                        <span>You spin me right round, baby. Like a record, baby.</span>
-                        <span>You spin me right round, baby. Like a record, baby.</span>
+                        <span class="marquee-item">You spin me right round, baby. Like a record, baby.</span>
+                        <span class="marquee-item">You spin me right round, baby. Like a record, baby.</span>
                     </div>
                 </div>
             </div>

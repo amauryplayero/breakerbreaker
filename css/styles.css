@@ -18,7 +18,7 @@ body {
 }
 
 .nav-container .nav-logo-container {
-	width: 4em;
+	width: 4.3em;
 	height: 100%;
 	display: flex;
 	justify-content: center;
@@ -27,6 +27,11 @@ body {
 
 .nav-container .nav-logo-container img {
 	width: 100%;
+}
+
+.nav-container .nav-logo-container img:hover {
+	transition: .5s ease-in-out;
+	transform: rotateY(3.142rad);
 }
 
 .nav-container .nav-copy-container {
@@ -50,12 +55,19 @@ body {
 	position: absolute;
 	overflow: hidden;
 	animation: marquee 5s linear infinite;
+	pointer-events: none;
+}
+
+.nav-container .nav-copy-container .marquee-item {
+	pointer-events: none;
+	overflow: hidden;
 }
 
 .nav-container .nav-copy-container .marquee span {
 	float: left;
 	width: 50%;
 	font-size: .9em;
+	pointer-events: none;
 }
 
 @keyframes marquee {
@@ -147,6 +159,10 @@ body {
 	writing-mode: vertical-rl;
 	transform: rotate(180deg);
 	font-size: 2em;
+}
+
+.image {
+	pointer-events: none;
 }
 
 .splide__container {
@@ -595,6 +611,23 @@ body {
 	justify-content: center;
 }
 
+.splide__slide .iframe-container {
+	width: 100%;
+	position: relative;
+	overflow: hidden;
+	padding-top: 56.25%;
+}
+
+.splide__slide .iframe-container .responsive-iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+}
+
 .acordeon {
 	margin: 0 10px 0 10px;
 }
@@ -608,7 +641,12 @@ body {
 }
 
 body {
-	cursor: url("/wp-content/themes/breakerbreaker/assets/icons/cross.png"), auto !important;
+	cursor: url("/wp-content/themes/breakerbreaker/assets/icons/cross (3).png"), auto !important;
+	z-index: 500;
+}
+
+* {
+	cursor: url("/wp-content/themes/breakerbreaker/assets/icons/cross (3).png"), auto !important;
 }
 
 /*# sourceMappingURL=styles.css.map */

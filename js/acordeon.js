@@ -8,6 +8,7 @@ console.log(data)
         const activeTab = document.getElementById(id)
         const thumbnails = Object.values(acordeon_data[id].thumbnails);
         const videosData = acordeon_data[id].videos
+        const browserWidth = window.innerWidth
         const videoFrames = []
 
         
@@ -29,8 +30,11 @@ console.log(data)
         for(let i =0; i<thumbnails.length; i++){
             const li = document.createElement('li')
             li.className="splide__slide acordeon"
-            li.innerHTML=`<iframe width="100%" height="200" src="${thumbnails[i]}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
-            // li.innerHTML=`haiii`
+            li.innerHTML=`
+            <div class="iframe-container">
+                <iframe class="responsive-iframe" src="${thumbnails[i]}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            `
             videoList.appendChild(li)
         }
         const splide = new Splide( '.splide', {

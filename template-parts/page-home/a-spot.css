@@ -24,6 +24,10 @@
 	font-size: 2em;
 }
 
+.image {
+	pointer-events: none;
+}
+
 .splide__container {
 	box-sizing: border-box;
 	position: relative;

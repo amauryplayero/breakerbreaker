@@ -14,7 +14,7 @@ console.log(data)
 		for(let i = 0 ; i < data.length;i++){
 			const slide = document.createElement('li')
 			slide.className="splide__slide"
-			slide.innerHTML = `<img id="image" src="${data[i].url}" title="${data[i].title}">`
+			slide.innerHTML = `<img class="image" src="${data[i].url}" title="${data[i].title}">`
 			aSpotSlideListEl.appendChild(slide)
 			console.log('div' + i + 'appended')
 		}
@@ -28,10 +28,18 @@ console.log(data)
 		wheelSleep: 1500,
 	} );
 
+	const loadImageAssetOnButtons = () =>{
+		const backwardImg = document.querySelector('.arrow-image-backward')
+		const forwardImg = document.querySelector('.arrow-image-forward')
+
+		backwardImg.src = "/wp-content/themes/breakerbreaker/assets/icons/down-chevron.png"
+		forwardImg.src = "/wp-content/themes/breakerbreaker/assets/icons/down-chevron.png"
+	}
+
 	
 	populateSlider()
+	loadImageAssetOnButtons()
 	splide.mount();
-
 	splide.on( 'active', (slide)=>{updateActiveSlideText(slide)})
 
 } );

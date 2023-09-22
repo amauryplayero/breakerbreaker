@@ -6,7 +6,6 @@ body{
 .nav-container{
     background-color: white;
     margin: 0 0 0 0;
-    // top:30px;
     top:0px;
     position: fixed;
     width: calc(100% - 2px);
@@ -15,17 +14,16 @@ body{
     justify-content: space-between;
     border: 2px black solid;
     .nav-logo-container{
-        width: 4em;
+        width: 4.3em;
         height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
-        &:hover{
-            // transition:.10s ease-in-out;
-            // transform: rotateY(3.142rad);
-            // animation-fill-mode: forwards;
-        }
         img{
+            &:hover{
+                transition:.5s ease-in-out;
+                transform: rotateY(3.142rad);
+            }
             width: 100%;
         }
     }
@@ -40,20 +38,25 @@ body{
             position: relative;
         }
         .marquee div {
-              display: flex;
-              align-items: center;
-            // display: block;
+            display: flex;
+            align-items: center;
             width: 200%;
             height: 100%;
             position: absolute;
-            overflow: hidden;
+            overflow:hidden;
             animation: marquee 5s linear infinite;
+            pointer-events: none;
+          }
+          .marquee-item{
+            pointer-events: none;
+            overflow:hidden;
           }
           
           .marquee span {
             float: left;
             width: 50%;
             font-size: .9em;
+            pointer-events: none;
           }
           
           @keyframes marquee {
@@ -75,7 +78,6 @@ body{
         .nav-item{
             display: flex;
             align-items: center;
-            // border: black solid;
             width: 120px;
             text-decoration: none;
             list-style-type: none;
